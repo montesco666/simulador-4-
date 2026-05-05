@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Simulador de Decisiones - Sistema del Agua</title>
+<style>
+body{
+font-family: Arial;
+text-align:center;
+background:#e6f7ff;
+}
+.container{
+margin:20px auto;
+padding:20px;
+width:90%;
+max-width:500px;
+background:white;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+button{
+margin:5px;
+padding:10px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+background:#007BFF;
+color:white;
+}
+.result{
+margin-top:20px;
+font-size:18px;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>💧 Toma decisiones sobre el sistema del agua</h2>
+
+<p>Selecciona acciones:</p>
+
+<button onclick="accion('contaminacion')">Reducir contaminación</button>
+<button onclick="accion('consumo')">Uso responsable</button>
+<button onclick="accion('proteccion')">Proteger fuentes</button>
+<button onclick="accion('maluso')">Aumentar consumo</button>
+
+<br><br>
+<button onclick="evaluar()">Evaluar sistema</button>
+<button onclick="reiniciar()">Reiniciar</button>
+
+<div class="result" id="resultado"></div>
+</div>
+
+<script>
+
+let puntaje = 0;
+
+function accion(tipo){
+if(tipo === 'contaminacion'){
+puntaje += 2;
+}
+if(tipo === 'consumo'){
+puntaje += 2;
+}
+if(tipo === 'proteccion'){
+puntaje += 3;
+}
+if(tipo === 'maluso'){
+puntaje -= 3;
+}
+alert("Acción aplicada");
+}
+
+function evaluar(){
+let resultado = document.getElementById("resultado");
+
+if(puntaje >= 5){
+resultado.innerHTML = "🟢 Sistema en equilibrio <br> Buenas decisiones, el sistema mejora.";
+resultado.style.color = "green";
+}
+else if(puntaje >= 1){
+resultado.innerHTML = "🟡 Sistema inestable <br> Algunas decisiones ayudan, pero hay problemas.";
+resultado.style.color = "orange";
+}
+else{
+resultado.innerHTML = "🔴 Sistema en desequilibrio <br> Las decisiones afectan negativamente el sistema.";
+resultado.style.color = "red";
+}
+}
+
+function reiniciar(){
+puntaje = 0;
+document.getElementById("resultado").innerHTML = "";
+}
+
+</script>
+
+</body>
+</html>
